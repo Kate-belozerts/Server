@@ -9,6 +9,7 @@ public class ServersButtons extends JButton {
     private JButton stop;
     private final JButton[] buttons;
     private JLabel status;
+    private Observer observer;
 
     public ServersButtons() {
         start();
@@ -29,6 +30,9 @@ public class ServersButtons extends JButton {
 
     private void setTurnOn() {
         status.setText("Server is working!!!");
+        if (observer != null) {
+            observer.update(true);
+        }
     }
 
 
@@ -44,6 +48,9 @@ public class ServersButtons extends JButton {
 
     private void setTurnOff() {
         status.setText("Server is OFF!!!");
+        if (observer != null) {
+            observer.update(false);
+        }
     }
 
     public JLabel getStatus() {
@@ -52,5 +59,9 @@ public class ServersButtons extends JButton {
 
     public JButton[] buttons() {
         return buttons;
+    }
+
+    public void setObserver(Observer observer) {
+        this.observer = observer;
     }
 }

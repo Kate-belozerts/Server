@@ -17,14 +17,27 @@ public class ServerWindow extends JFrame {
         setLocation(LOCATION_Y, LOCATION_X);
         setTitle("Server");
         createPanel();
+
+        setStatus();
+        revalidate(); // расположить код согласно новым изменениям(?)
+        repaint();
     }
 
     void createPanel() {
         this.panel = new ServerPanel();
         add(panel, BorderLayout.CENTER);
+
     }
 
     void setStatus() {
-//        status = panel.getStatus(); //TODO
+        Observer observer = new Observer() {
+            @Override
+            public void update(boolean serverStatus) {
+                status = serverStatus;
+                System.out.println(status);
+            }
+        };
+        ((ServerPanel) panel).addObserver(observer);
     }
+
 }

@@ -26,7 +26,7 @@ public class ServerPanel extends JPanel {
         add(showStatus, BorderLayout.SOUTH);
     }
 
-    public boolean getStatus() {
-        return !this.status.getText().contains("Server is OFF!!!");
+    public void addObserver(Observer observer) {
+        serversButtons.setObserver(observer);
     }
 }
